@@ -27,11 +27,11 @@ public class Todo extends Timestamped {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL)
+    private List<Manager> managers = new ArrayList<>();
+
     @OneToMany(mappedBy = "todo", cascade = CascadeType.REMOVE)
     private List<Comment> comments = new ArrayList<>();
-
-    @OneToMany(mappedBy = "todo")
-    private List<Manager> managers = new ArrayList<>();
 
     public Todo(String title, String contents, String weather, User user) {
         this.title = title;
